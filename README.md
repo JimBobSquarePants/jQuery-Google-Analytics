@@ -29,10 +29,10 @@ Usage
         1. trackevent.
         2 .trackPageView. 
 
- - **eventType*
+ - **eventType**
    A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
 
- - **attributes*
+ - **attributes**
    An optional series of attributes that can be used to override the attributes the core google event types. 
    These must follow the same format and order of the given _gaq.push() method arguments.
 
