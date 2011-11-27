@@ -93,13 +93,14 @@
                         /// <summary>
                         ///     Checks to see if a given object is a valid integer.
                         ///     http://stackoverflow.com/questions/3885817/how-to-check-if-a-number-is-float-or-integer 
+                        ///     http://lawrence.ecorp.net/inet/samples/regexp-validate2.php
                         /// </summary>
                         ///	<param name="obj" type="Integer">
                         ///		The object to check against.
                         ///	</param>
                         ///	<returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-                        return obj === +obj && obj === (obj | 0);
+                        return (/^[\-+]?\d+$/.test(obj)) || obj === +obj && obj === (obj | 0);
 
                     },
 
@@ -125,13 +126,14 @@
                         /// <summary>
                         ///     Checks to see if a given object is a valid float.
                         ///     http://stackoverflow.com/questions/3885817/how-to-check-if-a-number-is-float-or-integer 
+                        ///     http://lawrence.ecorp.net/inet/samples/regexp-validate2.php
                         /// </summary>
                         ///	<param name="obj" type="Float">
                         ///		The object to check against.
                         ///	</param>
                         ///	<returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-                        return obj === +obj && obj !== (obj | 0);
+                        return (/^[\-+]?\d+(\.\d+)?$/.test(obj)) || obj === +obj && obj !== (obj | 0);
                     },
 
                     optionalFloat: function (obj) {
@@ -323,7 +325,37 @@
                         // Map a new array getting the default fallback if undefined.
                         args = $.map(this.attributes, function (obj, key) {
 
-                            return obj.value || obj.fallback;
+                            var type = obj.validation,
+                                value = obj.value;
+
+                            if (type === "isInt" || type === "optionalInt") {
+
+                                if (value !== undef) {
+
+                                    value = parseInt(value, 10);
+
+                                }
+
+                            }
+                            else if (type === "isFloat" || type === "optionalFloat") {
+
+                                if (value !== undef) {
+
+                                    value = parseFloat(value);
+                                }
+
+                            }
+                            else if (type === "isBool" || type === "optionalBool") {
+
+                                if (value !== undef) {
+
+                                    value = Boolean(value);
+
+                                }
+
+                            }
+
+                            return value !== undef ? value : obj.fallback;
 
                         });
 
