@@ -9,6 +9,7 @@ Features
 
 * Reading event tracking variables from HTML data attributes as default.
 * Reading pageview tracking variables from HTML data attributes as default.
+* Validates values for type before pushing.
 * Support for dynamically created DOM objects and attributes created using `$.data()`.
 * Support delay for links to ensure that the logging to Google Analytics occurs before redirect.
 
@@ -83,12 +84,12 @@ Examples
     <a class="trackEvent" href="#" data-ga-category="category" data-ga-action="action"  data-ga-label="label" >Click to test trackEvent</a>
     $("a.trackEvent").googleAnalytics("trackEvent", "click");
 
-Will bind the _trackEvent analytics method to click event of the selected DOM object.
+Will bind the `_trackEvent` analytics method to click event of the selected DOM object.
 
 	<a class="trackPageview" href="#" data-ga-url="/some other url">Click to test trackPageview</a>
     $("a.trackPageview").googleAnalytics("trackPageview", "click");    
 	
-Will bind the _trackPageview analytics method to click event of the selected DOM object.
+Will bind the `_trackPageview` analytics method to click event of the selected DOM object.
 
 
 Please use the [GitHub issue tracker](https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin/issues) for bug
