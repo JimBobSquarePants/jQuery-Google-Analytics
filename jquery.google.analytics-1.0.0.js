@@ -161,7 +161,7 @@
                         ///	</param>
                         ///	<returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
 
-                        return obj === true || obj === false;
+                        return (obj === true || obj === "true") || (obj === false || obj === "false");
 
                     },
 
@@ -179,7 +179,7 @@
                             return true;
                         }
 
-                        return validation.isBoolean(obj);
+                        return validation.isBool(obj);
                     }
 
                 },
@@ -343,6 +343,16 @@
 
                         var shell = this;
 
+                        function push() {
+
+                            // Create the argument array to pass to Google.
+                            var args = shell.createArgumentArray();
+
+                            // Push the data.
+                            _gaq.push(args);
+
+                        }
+
                         // Prevent the default action if required.
                         if (this.preventDefault === true) {
 
@@ -356,15 +366,7 @@
                             this.checkAttributes();
 
                             // Push to google then call any after code.
-                            $.when(function () {
-
-                                // Create the argument array to pass to Google.
-                                var args = shell.createArgumentArray();
-
-                                // Push the data.
-                                _gaq.push(args);
-
-                            }).then(function () {
+                            $.when(push()).then(function () {
 
                                 var after = shell.after;
 
