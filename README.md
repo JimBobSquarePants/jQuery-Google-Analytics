@@ -91,6 +91,7 @@ Will bind the `_trackEvent` analytics method to click event of the selected DOM 
 	
 Will bind the `_trackPageview` analytics method to click event of the selected DOM object.
 
+A jsfiddle [link](http://jsfiddle.net/jamessouth/4wV2g/2/) is available for simple testing an debugging.
 
 Please use the [GitHub issue tracker](https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin/issues) for bug
 reports and feature requests.
