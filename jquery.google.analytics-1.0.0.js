@@ -101,7 +101,7 @@
                         ///    </param>
                         ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-                        return (/^[\-+]?\d+$/).test(obj) || obj === +obj && obj === (obj | 0);
+                        return (/^[\-+]?\d+$/).test(obj) || (obj === +obj && obj === (obj | 0));
 
                     },
 
@@ -134,7 +134,7 @@
                         ///    </param>
                         ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-                        return (/^[\-+]?\d+(\.\d+)?$/).test(obj) || obj === +obj && obj !== (obj | 0);
+                        return (/^[\-+]?\d+(\.\d+)?$/).test(obj) || (obj === +obj && obj !== (obj | 0));
                     },
 
                     optionalFloat: function (obj) {
@@ -321,10 +321,8 @@
                         /// </summary>
                         ///    <returns type="Array">An array containing a list of method parameters.</returns>
 
-                        var shell = this,
-
                         // Map a new array getting the default fallback if undefined.
-                        args = $.map(this.attributes, function (obj, key) {
+                        var args = $.map(this.attributes, function (obj, key) {
 
                             var type = obj.validation,
                                 value = obj.value;
