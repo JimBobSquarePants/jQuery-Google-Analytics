@@ -1,4 +1,4 @@
-﻿/*!
+/*!
 * jQuery Google Analytics Plugin v1.0.0
 * https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
 *
@@ -17,24 +17,24 @@
 
     $.fn.googleAnalytics = function (apiName, eventType, attributes) {
         /// <summary>
-        ///     The googleAnalytics methods provides a wrapper for sending tracking data 
+        ///     The googleAnalytics methods provides a wrapper for sending tracking data
         ///     to google. Current events tracked are "_trackEvent" and "_trackPageview".
         /// </summary>
-        ///	<param name="apiName" type="String">
-        ///		The type of Google event to track. Currently tracked events are.
+        ///    <param name="apiName" type="String">
+        ///        The type of Google event to track. Currently tracked events are.
         ///      &#10;    1: trackevent.
-        ///      &#10;    2: trackPageView. 
-        ///	</param>
-        ///	<param name="eventType" type="String">
-        ///		A string containing one or more DOM event types, 
+        ///      &#10;    2: trackPageView.
+        ///    </param>
+        ///    <param name="eventType" type="String">
+        ///        A string containing one or more DOM event types,
         ///     such as "click" or "submit," or custom event names.
-        ///	</param>
-        ///	<param name="attributes" type="Object" optional="true" parameterArray="true">
-        ///		A series of attributes that can be used to override the attributes 
+        ///    </param>
+        ///    <param name="attributes" type="Object" optional="true" parameterArray="true">
+        ///        A series of attributes that can be used to override the attributes
         ///     defined by the core google event types. These must follow the same format and order
         ///     of the given _gaq.push() method arguments.
-        ///	</param>
-        ///	<returns type="jQuery">The jQuery object to allow chaining.</returns>
+        ///    </param>
+        ///    <returns type="jQuery">The jQuery object to allow chaining.</returns>
 
         // Hold all the event trackers.
         var eventList = [],
@@ -56,10 +56,10 @@
                         /// <summary>
                         ///     Checks to see if a given object is a valid non-empty string.
                         /// </summary>
-                        ///	<param name="obj" type="String">
-                        ///		The object to check against.
-                        ///	</param>
-                        ///	<returns type="Boolean">True if the string is valid, otherwise false.</returns>
+                        ///    <param name="obj" type="String">
+                        ///        The object to check against.
+                        ///    </param>
+                        ///    <returns type="Boolean">True if the string is valid, otherwise false.</returns>
 
                         var empty = true;
 
@@ -78,10 +78,11 @@
                         ///     Since the object is optional if it is equal to undefined then validation
                         ///     will return true.
                         /// </summary>
-                        ///	<param name="obj" type="String">
-                        ///		The object to check against.
-                        ///	</param>
-                        ///	<returns type="Boolean">True if the string is valid, otherwise false.</returns>
+                        ///    <param name="obj" type="String">
+                        ///        The object to check against.
+                        ///    </param>
+                        ///    <returns type="Boolean">True if the string is valid, otherwise false.</returns>
+
                         if (obj === undef) {
                             return true;
                         }
@@ -92,15 +93,15 @@
                     isInt: function (obj) {
                         /// <summary>
                         ///     Checks to see if a given object is a valid integer.
-                        ///     http://stackoverflow.com/questions/3885817/how-to-check-if-a-number-is-float-or-integer 
+                        ///     http://stackoverflow.com/questions/3885817/how-to-check-if-a-number-is-float-or-integer
                         ///     http://lawrence.ecorp.net/inet/samples/regexp-validate2.php
                         /// </summary>
-                        ///	<param name="obj" type="Integer">
-                        ///		The object to check against.
-                        ///	</param>
-                        ///	<returns type="Boolean">True if the number is valid, otherwise false.</returns>
+                        ///    <param name="obj" type="Integer">
+                        ///        The object to check against.
+                        ///    </param>
+                        ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-                        return (/^[\-+]?\d+$/.test(obj)) || obj === +obj && obj === (obj | 0);
+                        return (/^[\-+]?\d+$/).test(obj) || obj === +obj && obj === (obj | 0);
 
                     },
 
@@ -110,10 +111,10 @@
                         ///     Since the object is optional if it is equal to undefined then validation
                         ///     will return true.
                         /// </summary>
-                        ///	<param name="obj" type="Integer">
-                        ///		The object to check against.
-                        ///	</param>
-                        ///	<returns type="Boolean">True if the number is valid, otherwise false.</returns>
+                        ///    <param name="obj" type="Integer">
+                        ///        The object to check against.
+                        ///    </param>
+                        ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
                         if (obj === undef) {
                             return true;
@@ -125,15 +126,15 @@
                     isFloat: function (obj) {
                         /// <summary>
                         ///     Checks to see if a given object is a valid float.
-                        ///     http://stackoverflow.com/questions/3885817/how-to-check-if-a-number-is-float-or-integer 
+                        ///     http://stackoverflow.com/questions/3885817/how-to-check-if-a-number-is-float-or-integer
                         ///     http://lawrence.ecorp.net/inet/samples/regexp-validate2.php
                         /// </summary>
-                        ///	<param name="obj" type="Float">
-                        ///		The object to check against.
-                        ///	</param>
-                        ///	<returns type="Boolean">True if the number is valid, otherwise false.</returns>
+                        ///    <param name="obj" type="Float">
+                        ///        The object to check against.
+                        ///    </param>
+                        ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-                        return (/^[\-+]?\d+(\.\d+)?$/.test(obj)) || obj === +obj && obj !== (obj | 0);
+                        return (/^[\-+]?\d+(\.\d+)?$/).test(obj) || obj === +obj && obj !== (obj | 0);
                     },
 
                     optionalFloat: function (obj) {
@@ -142,10 +143,10 @@
                         ///     Since the object is optional if it is equal to undefined then validation
                         ///     will return true.
                         /// </summary>
-                        ///	<param name="obj" type="Float">
-                        ///		The object to check against.
-                        ///	</param>
-                        ///	<returns type="Boolean">True if the number is valid, otherwise false.</returns>
+                        ///    <param name="obj" type="Float">
+                        ///        The object to check against.
+                        ///    </param>
+                        ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
                         if (obj === undef) {
                             return true;
@@ -158,10 +159,10 @@
                         /// <summary>
                         ///     Checks to see if a given object is a valid boolean.
                         /// </summary>
-                        ///	<param name="obj" type="Boolean">
-                        ///		The object to check against.
-                        ///	</param>
-                        ///	<returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
+                        ///    <param name="obj" type="Boolean">
+                        ///        The object to check against.
+                        ///    </param>
+                        ///    <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
 
                         return (obj === true || obj === "true") || (obj === false || obj === "false");
 
@@ -173,10 +174,10 @@
                         ///     Since the object is optional if it is equal to undefined then validation
                         ///     will return true.
                         /// </summary>
-                        ///	<param name="obj" type="Boolean">
-                        ///		The object to check against.
-                        ///	</param>
-                        ///	<returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
+                        ///    <param name="obj" type="Boolean">
+                        ///        The object to check against.
+                        ///    </param>
+                        ///    <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
                         if (obj === undef) {
                             return true;
                         }
@@ -189,9 +190,9 @@
                 // A list of Api objects.
                 ApiList = {};
 
-                // Api items. 
+                // Api items.
                 // The order of properties must mach the order of the arguments in Google's
-                // _gaq.push() methods. 
+                // _gaq.push() methods.
 
                 ApiList.trackEvent = function () {
                     /// <summary>
@@ -263,14 +264,14 @@
                 // Api Wrapper Constructor
                 function ApiWrapper(apiName) {
                     /// <summary>
-                    ///     The ApiWrapper object provides the basic methods for validating and 
+                    ///     The ApiWrapper object provides the basic methods for validating and
                     ///     pushing the current DOM object's attributes.
                     /// </summary>
-                    ///	<param name="apiName" type="String">
-                    ///		The type of Google event to track. Currently tracked events are.
+                    ///    <param name="apiName" type="String">
+                    ///        The type of Google event to track. Currently tracked events are.
                     ///      &#10;    1: trackevent.
-                    ///      &#10;    2: trackPageView. 
-                    ///	</param>
+                    ///      &#10;    2: trackPageView.
+                    ///    </param>
 
                     this.apiName = apiName;
 
@@ -315,10 +316,10 @@
 
                     this.createArgumentArray = function () {
                         /// <summary>
-                        ///     Creates the argument array from the current attribute list to 
+                        ///     Creates the argument array from the current attribute list to
                         ///     push to Google.
                         /// </summary>
-                        ///	<returns type="Array">An array containing a list of method parameters.</returns>
+                        ///    <returns type="Array">An array containing a list of method parameters.</returns>
 
                         var shell = this,
 
@@ -366,12 +367,12 @@
                     // Push the analytics data to Google.
                     this.pushToGoogle = function (event) {
                         /// <summary>
-                        ///     Pushes the information contained within "data-ga" attributes assigned 
+                        ///     Pushes the information contained within "data-ga" attributes assigned
                         ///     to the current DOM object to Google using the "_gaq.push()" method.
                         /// </summary>
-                        ///	<param name="event" type="jQuery.Event">
-                        ///		The event object normalized according to W3C standards.  
-                        ///	</param>
+                        ///    <param name="event" type="jQuery.Event">
+                        ///        The event object normalized according to W3C standards.  
+                        ///    </param>
 
                         var shell = this;
 
@@ -405,11 +406,14 @@
                                 // Run any after code.
                                 if ($.isFunction(after)) {
 
+
+
                                     after(shell.$elem);
 
                                 }
 
                             });
+
                         } else {
 
                             throw new Error("Google Analaytics _gaq variable not found! Please set up Google Analytics properly.");
@@ -423,14 +427,14 @@
                         /// <summary>
                         ///     Assigns the given jQuery object and attributes to the current tracker.
                         /// </summary>
-                        ///	<param name="$elem" type="jQuery">
-                        ///		The jQuery DOM element wrapper.
-                        ///	</param>
-                        ///	<param name="attributes" type="Object">
-                        ///		A series of attributes that can be used to override the attributes 
+                        ///    <param name="$elem" type="jQuery">
+                        ///        The jQuery DOM element wrapper.
+                        ///    </param>
+                        ///    <param name="attributes" type="Object">
+                        ///        A series of attributes that can be used to override the attributes
                         ///     defined by the core google event types. These must follow the same format and order
                         ///     of the given _gaq.push() method arguments.
-                        ///	</param>
+                        ///    </param>
 
                         // Assign the jQuery DOM element wrapper.
                         this.$elem = $elem;
@@ -448,11 +452,11 @@
                     /// <summary>
                     ///     Creates new ApiList and ApiWrapper objects matching the given apiName.
                     /// </summary>
-                    ///	<param name="apiName" type="String">
-                    ///		The type of Google event to track. Currently tracked events are.
+                    ///    <param name="apiName" type="String">
+                    ///        The type of Google event to track. Currently tracked events are.
                     ///      &#10;    1: trackevent.
-                    ///      &#10;    2: trackPageView. 
-                    ///	</param>
+                    ///      &#10;    2: trackPageView.
+                    ///    </param>
 
                     if (!apiName || typeof apiName !== "string") {
 
@@ -560,10 +564,19 @@
 
         } ());
 
-        // Bind any events.
-        $(document).on(eventType, this.selector, function (event) {
+        function lookupTracker($elem, event) {
+            /// <summary>
+            ///     Looks up the current jQuery DOM object against the list of available trackers
+            ///     and runs the apropriate tracker.
+            /// </summary>
+            ///    <param name="$elem" type="jQuery">
+            ///        The jQuery object to look up..
+            ///    </param>
+            ///    <param name="event" type="jQuery.Event">
+            ///        The event object normalized according to W3C standards.  
+            ///    </param>
 
-            var $shell = $(this),
+            var $shell = $elem,
 
                 tracker;
 
@@ -586,7 +599,31 @@
 
             }
 
-        });
+        }
+
+        // Event Binding.
+
+        // Handle any load events.
+        if (eventType.toLowerCase() === "load") {
+
+            // Bind any standard events.
+            $(document).on("click", this.selector, function (event) {
+
+                lookupTracker($(this), event);
+
+            });
+
+        }
+        else {
+
+            // Bind any standard events.
+            $(document).on(eventType, this.selector, function (event) {
+
+                lookupTracker($(this), event);
+
+            });
+
+        }
 
         // jQuery return
         return this.each(function () {
@@ -599,9 +636,37 @@
 
                 // Assign the tracker event to the DOM object.
                 trackerList[apiName].getTracker.assignTracker($(this), attributes);
+
+                // Handle any load events.
+                if (eventType.toLowerCase() === "load") {
+
+                    var $shell = $(this),
+                        index = -1;
+
+                    // Trigger the click event for the object.
+                    $(this).trigger("click");
+
+                    // Loop through our array and remove our stored tracker.
+                    $.each(eventList, function (key, val) {
+
+                        if (val.$elem[0] === $shell[0]) {
+                            // Assign the correct tracker value and exit the loop.
+                            index = key;
+
+                            return true;
+                        }
+
+                    });
+
+                    // Delete the item from the array.
+                    if (index > -1) {
+                        eventList.splice(index, 1);
+                    }
+                }
             }
 
         });
 
     };
+
 } (jQuery || _jQuery));
