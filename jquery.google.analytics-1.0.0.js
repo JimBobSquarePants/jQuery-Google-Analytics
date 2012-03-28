@@ -41,7 +41,7 @@
 
             ga = (function () {
                 /// <summary>
-                ///     The ga object contains all the functions necessary to create a tracker.
+                ///     The ga object contains all the functions necessary to create a tracker
                 ///     to send analytics data to google.
                 /// </summary>
 
@@ -188,13 +188,13 @@
                 },
 
                 // A list of Api objects.
-                ApiList = {};
+                apiList = {};
 
                 // Api items.
                 // The order of properties must mach the order of the arguments in Google's
                 // _gaq.push() methods.
 
-                ApiList.trackEvent = function () {
+                apiList.trackEvent = function () {
                     /// <summary>
                     ///     The trackEvent object defines all the necessary parameters
                     ///     to send event tracking analytics data to google.
@@ -210,19 +210,19 @@
                     this.category = {
                         value: undef,
                         validation: "isString",
-                        fallback: "na"
+                        fallback: ""
                     };
 
                     this.action = {
                         value: undef,
                         validation: "isString",
-                        fallback: "na"
+                        fallback: ""
                     };
 
                     this.label = {
                         value: undef,
                         validation: "isString",
-                        fallback: "na"
+                        fallback: ""
                     };
 
                     this.value = {
@@ -240,12 +240,13 @@
 
                 };
 
-                ApiList.trackPageview = function () {
+                apiList.trackPageview = function () {
                     /// <summary>
                     ///     The trackEvent object defines all the necessary parameters
                     ///     to send page tracking analytics data to google.
                     ///     http://code.google.com/apis/analytics/docs/gaJS/gaJSApiBasicConfiguration.html#_gat.GA_Tracker_._trackPageview
                     /// </summary>
+
                     this.event = {
                         value: "_trackPageview",
                         validation: "isString",
@@ -260,20 +261,158 @@
 
                 };
 
+                apiList.addItem = function () {
+                    /// <summary>
+                    ///    Use this method to track items purchased by visitors to your ecommerce site.
+                    ///    This method tracks individual items by their SKU. This means that the sku 
+                    ///    parameter is required. This method then associates the item to the parent 
+                    ///    transaction object via the orderId argument.
+                    ///    http://code.google.com/apis/analytics/docs/gaJS/gaJSApiEcommerce.html#_gat.GA_Tracker_._addItem
+                    /// </summary>
+
+                    this.event = {
+                        value: "_addItem",
+                        validation: "isString",
+                        fallback: "_addItem"
+                    };
+
+                    this.orderId = {
+                        value: undef,
+                        validation: "isString",
+                        fallback: ""
+                    };
+
+                    this.sku = {
+                        value: undef,
+                        validation: "isString",
+                        fallback: ""
+                    };
+
+                    this.name = {
+                        value: undef,
+                        validation: "isString",
+                        fallback: ""
+                    };
+
+                    this.category = {
+                        value: undef,
+                        validation: "optionalString",
+                        fallback: ""
+                    };
+
+                    this.price = {
+                        value: undef,
+                        validation: "isFloat",
+                        fallback: ""
+                    };
+
+                    this.quantity = {
+                        value: undef,
+                        validation: "isInt",
+                        fallback: ""
+                    };
+
+                };
+
+                apiList.addTrans = function () {
+                    /// <summary>
+                    ///    Creates a transaction object with the given values. As with 
+                    ///    _addItem(), this method handles only transaction tracking and 
+                    ///    provides no additional ecommerce functionality. Therefore, if the
+                    ///    transaction is a duplicate of an existing transaction for that session, 
+                    ///    the old transaction values are over-written with the new transaction values. 
+                    ///    Arguments for this method are matched by position, so be sure to supply all 
+                    ///    parameters, even if some of them have an empty value.
+                    ///    http://code.google.com/apis/analytics/docs/gaJS/gaJSApiEcommerce.html#_gat.GA_Tracker_._addTrans
+                    /// </summary>
+
+                    this.event = {
+                        value: "_addTrans",
+                        validation: "isString",
+                        fallback: "_addTrans"
+                    };
+
+                    this.orderId = {
+                        value: undef,
+                        validation: "isString",
+                        fallback: ""
+                    };
+
+                    this.storeName = {
+                        value: undef,
+                        validation: "isString",
+                        fallback: ""
+                    };
+
+                    this.total = {
+                        value: undef,
+                        validation: "isFloat",
+                        fallback: ""
+                    };
+
+                    this.tax = {
+                        value: undef,
+                        validation: "optionalFloat",
+                        fallback: ""
+                    };
+
+                    this.shipping = {
+                        value: undef,
+                        validation: "optionalFloat",
+                        fallback: ""
+                    };
+
+                    this.city = {
+                        value: undef,
+                        validation: "optionalString",
+                        fallback: ""
+                    };
+
+                    this.city = {
+                        value: undef,
+                        validation: "optionalString",
+                        fallback: ""
+                    };
+
+                    this.state = {
+                        value: undef,
+                        validation: "optionalString",
+                        fallback: ""
+                    };
+
+                    this.country = {
+                        value: undef,
+                        validation: "optionalString",
+                        fallback: ""
+                    };
+
+                };
+
+                apiList.trackTrans = function () {
+                    /// <summary> 
+                    ///    Sends both the transaction and item data to the Google Analytics server. 
+                    ///    This method should be called after _trackPageview(), and used in conjunction 
+                    ///    with the _addItem() and addTrans() methods. It should be called after items 
+                    ///    and transaction elements have been set up.      
+                    /// </summary> 
+
+                    // No attributes to pass.
+
+                };
 
                 // Api Wrapper Constructor
-                function ApiWrapper(apiName) {
+                function ApiWrapper(name) {
                     /// <summary>
                     ///     The ApiWrapper object provides the basic methods for validating and
                     ///     pushing the current DOM object's attributes.
                     /// </summary>
-                    ///    <param name="apiName" type="String">
+                    ///    <param name="name" type="String">
                     ///        The type of Google event to track. Currently tracked events are.
                     ///      &#10;    1: trackevent.
                     ///      &#10;    2: trackPageView.
                     ///    </param>
 
-                    this.apiName = apiName;
+                    this.apiName = name;
 
                     // Checking Methods.
 
@@ -321,42 +460,46 @@
                         /// </summary>
                         ///    <returns type="Array">An array containing a list of method parameters.</returns>
 
+                        var shell = this,
+
                         // Map a new array getting the default fallback if undefined.
-                        var args = $.map(this.attributes, function (obj, key) {
+                            args = $.map(this.attributes, function (obj, key) {
 
-                            var type = obj.validation,
-                                value = obj.value;
+                                var type = obj.validation,
+                                    value = obj.value,
+                                    forceType = shell.forceTypeConversion;
 
-                            if (type === "isInt" || type === "optionalInt") {
 
-                                if (value !== undef) {
+                                if ((type === "isInt" || type === "optionalInt") && forceType) {
 
-                                    value = parseInt(value, 10);
+                                    if (value !== undef) {
+
+                                        value = parseInt(value, 10);
+
+                                    }
+
+                                }
+                                else if ((type === "isFloat" || type === "optionalFloat") && forceType) {
+
+                                    if (value !== undef) {
+
+                                        value = parseFloat(value);
+                                    }
+
+                                }
+                                else if ((type === "isBool" || type === "optionalBool") && forceType) {
+
+                                    if (value !== undef) {
+
+                                        value = Boolean(value);
+
+                                    }
 
                                 }
 
-                            }
-                            else if (type === "isFloat" || type === "optionalFloat") {
+                                return value !== undef ? value : obj.fallback;
 
-                                if (value !== undef) {
-
-                                    value = parseFloat(value);
-                                }
-
-                            }
-                            else if (type === "isBool" || type === "optionalBool") {
-
-                                if (value !== undef) {
-
-                                    value = Boolean(value);
-
-                                }
-
-                            }
-
-                            return value !== undef ? value : obj.fallback;
-
-                        });
+                            });
 
                         return args;
 
@@ -404,8 +547,6 @@
                                 // Run any after code.
                                 if ($.isFunction(after)) {
 
-
-
                                     after(shell.$elem);
 
                                 }
@@ -421,14 +562,14 @@
                     };
 
                     // Public function to call.
-                    this.assignTracker = function ($elem, attributes) {
+                    this.assignTracker = function ($elem, attr) {
                         /// <summary>
                         ///     Assigns the given jQuery object and attributes to the current tracker.
                         /// </summary>
                         ///    <param name="$elem" type="jQuery">
                         ///        The jQuery DOM element wrapper.
                         ///    </param>
-                        ///    <param name="attributes" type="Object">
+                        ///    <param name="attr" type="Object">
                         ///        A series of attributes that can be used to override the attributes
                         ///     defined by the core google event types. These must follow the same format and order
                         ///     of the given _gaq.push() method arguments.
@@ -439,37 +580,37 @@
 
                         // Assign any dynamic attributes.
                         if (attributes) {
-                            this.attributes = attributes;
+                            this.attributes = attr;
                         }
 
                     };
 
                 }
 
-                ga.ApiCall = function (apiName) {
+                ga.ApiCall = function (name) {
                     /// <summary>
-                    ///     Creates new ApiList and ApiWrapper objects matching the given apiName.
+                    ///     Creates new apiList and ApiWrapper objects matching the given apiName.
                     /// </summary>
-                    ///    <param name="apiName" type="String">
+                    ///    <param name="name" type="String">
                     ///        The type of Google event to track. Currently tracked events are.
                     ///      &#10;    1: trackevent.
                     ///      &#10;    2: trackPageView.
                     ///    </param>
 
-                    if (!apiName || typeof apiName !== "string") {
+                    if (!name || typeof name !== "string") {
 
                         throw new Error("Invalid API name.");
 
                     }
 
-                    if (ApiList[apiName] === undef) {
+                    if (apiList[name] === undef) {
 
                         throw new Error("Specified API call unknown.");
                     }
 
                     // Set up our attributes.
-                    var apiAttributes = new ApiList[apiName](),
-                    apiObject = new ApiWrapper(apiName);
+                    var apiAttributes = new apiList[name](),
+                    apiObject = new ApiWrapper(name);
 
                     // Assign the default attributes.
                     apiObject.attributes = apiAttributes;
@@ -501,6 +642,8 @@
 
                     var tracker = new ga.ApiCall("trackEvent");
                     tracker.preventDefault = true;
+                    // _trackEvent takes different parameter types to the other methods.
+                    tracker.forceTypeConversion = true;
                     tracker.after = function ($elem) {
 
                         // Redirect the location - delayed so that any other page functionality has time to run.
@@ -560,9 +703,72 @@
 
             trackerList.trackPageview = trackPageview;
 
+            // Add ecommerce item.
+            var addItem = {
+
+                getTracker: {},
+
+                makeTracker: function () {
+
+                    var tracker = new ga.ApiCall("addItem");
+                    tracker.preventDefault = true;
+
+                    // Assign the tracker to the addItem object.
+                    addItem.getTracker = tracker;
+
+                    // Add the tracker to the eventList.
+                    eventList.push(tracker);
+                }
+
+            };
+
+            trackerList.addItem = addItem;
+
+            // Add ecommerce transaction.
+            var addTrans = {
+
+                getTracker: {},
+
+                makeTracker: function () {
+
+                    var tracker = new ga.ApiCall("addTrans");
+                    tracker.preventDefault = true;
+
+                    // Assign the tracker to the addTrans object.
+                    addTrans.getTracker = tracker;
+
+                    // Add the tracker to the eventList.
+                    eventList.push(tracker);
+                }
+
+            };
+
+            trackerList.addTrans = addTrans;
+
+            // Track ecommerce transaction.
+            var trackTrans = {
+
+                getTracker: {},
+
+                makeTracker: function () {
+
+                    var tracker = new ga.ApiCall("trackTrans");
+                    tracker.preventDefault = true;
+
+                    // Assign the tracker to the trackTrans object.
+                    trackTrans.getTracker = tracker;
+
+                    // Add the tracker to the eventList.
+                    eventList.push(tracker);
+                }
+
+            };
+
+            trackerList.trackTrans = trackTrans;
+
         } ());
 
-        function lookupTracker($elem, event) {
+        function runTracker($elem, event) {
             /// <summary>
             ///     Looks up the current jQuery DOM object against the list of available trackers
             ///     and runs the apropriate tracker.
@@ -582,12 +788,13 @@
             $.each(eventList, function (key, val) {
 
                 if (val.$elem[0] === $shell[0]) {
+
                     // Assign the correct tracker value and exit the loop.
                     tracker = val;
 
                     return true;
                 }
-
+                return false;
             });
 
             if (tracker !== undef) {
@@ -605,9 +812,9 @@
         if (eventType.toLowerCase() === "load") {
 
             // Bind any standard events.
-            $(document).on("click", this.selector, function (event) {
+            $(document.body).on("click", this.selector, function (event) {
 
-                lookupTracker($(this), event);
+                runTracker($(this), event);
 
             });
 
@@ -615,9 +822,9 @@
         else {
 
             // Bind any standard events.
-            $(document).on(eventType, this.selector, function (event) {
+            $(document.body).on(eventType, this.selector, function (event) {
 
-                lookupTracker($(this), event);
+                runTracker($(this), event);
 
             });
 
@@ -626,14 +833,16 @@
         // jQuery return
         return this.each(function () {
 
+            var tracker = trackerList[apiName];
+
             // Track the event if a matching tracker exists.
-            if (trackerList[apiName]) {
+            if (tracker) {
 
                 // Create a new tracker object for this DOM object.
-                trackerList[apiName].makeTracker();
+                tracker.makeTracker();
 
                 // Assign the tracker event to the DOM object.
-                trackerList[apiName].getTracker.assignTracker($(this), attributes);
+                tracker.getTracker.assignTracker($(this), attributes);
 
                 // Handle any load events.
                 if (eventType.toLowerCase() === "load") {
@@ -651,8 +860,12 @@
                             // Assign the correct tracker value and exit the loop.
                             index = key;
 
+                            // break.
                             return true;
                         }
+
+                        // continue.
+                        return false;
 
                     });
 
