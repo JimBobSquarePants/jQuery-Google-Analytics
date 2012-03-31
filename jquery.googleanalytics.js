@@ -10,12 +10,12 @@
 */
 
 /*global $, _gaq, jQuery, _jQuery */
-(function ($, undef) {
+(function ($, undefined) {
     /// <param name="$" type="jQuery" />
 
     "use strict";
 
-    $.fn.googleAnalytics = function (apiName, eventType, attributes) {
+    $.fn.googleAnalytics = function (apiName, eventType, options) {
         /// <summary>
         ///     The googleAnalytics methods provides a wrapper for sending tracking data
         ///     to google. Current events tracked are "_trackEvent" and "_trackPageview".
@@ -29,8 +29,10 @@
         ///        A string containing one or more DOM event types,
         ///     such as "click" or "submit," or custom event names.
         ///    </param>
-        ///    <param name="attributes" type="Object" optional="true" parameterArray="true">
-        ///        A series of attributes that can be used to override the attributes
+        ///    <param name="options" type="Object" optional="true" parameterArray="true">
+        ///     A series of options to pass to the plugin.
+        ///     &#10;    1: debug. Whether the plugin code is running in debug mode.  
+        ///     &#10;    1: attributes. A series of attributes that can be used to override the attributes
         ///     defined by the core google event types. These must follow the same format and order
         ///     of the given _gaq.push() method arguments.
         ///    </param>
@@ -38,6 +40,8 @@
 
         // Reference outer jQuery context.
         var outer = this,
+            debug = options.debug,
+            attributes = options.attributes,
 
         // The list of tracker types.
             trackerList = [],
@@ -77,7 +81,7 @@
                          optionalString: function (obj) {
                              /// <summary>
                              ///     Checks to see if a given object is a valid non-empty string.
-                             ///     Since the object is optional if it is equal to undefined then validation
+                             ///     Since the object is optional if it is equal to undefinedined then validation
                              ///     will return true.
                              /// </summary>
                              ///    <param name="obj" type="String">
@@ -85,7 +89,7 @@
                              ///    </param>
                              ///    <returns type="Boolean">True if the string is valid, otherwise false.</returns>
 
-                             if (obj === undef) {
+                             if (obj === undefined) {
                                  return true;
                              }
 
@@ -110,7 +114,7 @@
                          optionalInt: function (obj) {
                              /// <summary>
                              ///     Checks to see if a given object is a valid integer.
-                             ///     Since the object is optional if it is equal to undefined then validation
+                             ///     Since the object is optional if it is equal to undefinedined then validation
                              ///     will return true.
                              /// </summary>
                              ///    <param name="obj" type="Integer">
@@ -118,7 +122,7 @@
                              ///    </param>
                              ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-                             if (obj === undef) {
+                             if (obj === undefined) {
                                  return true;
                              }
 
@@ -142,7 +146,7 @@
                          optionalFloat: function (obj) {
                              /// <summary>
                              ///     Checks to see if a given object is a valid float.
-                             ///     Since the object is optional if it is equal to undefined then validation
+                             ///     Since the object is optional if it is equal to undefinedined then validation
                              ///     will return true.
                              /// </summary>
                              ///    <param name="obj" type="Float">
@@ -150,7 +154,7 @@
                              ///    </param>
                              ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-                             if (obj === undef) {
+                             if (obj === undefined) {
                                  return true;
                              }
 
@@ -173,14 +177,14 @@
                          optionalBool: function (obj) {
                              /// <summary>
                              ///     Checks to see if a given object is a valid boolean.
-                             ///     Since the object is optional if it is equal to undefined then validation
+                             ///     Since the object is optional if it is equal to undefinedined then validation
                              ///     will return true.
                              /// </summary>
                              ///    <param name="obj" type="Boolean">
                              ///        The object to check against.
                              ///    </param>
                              ///    <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
-                             if (obj === undef) {
+                             if (obj === undefined) {
                                  return true;
                              }
 
@@ -208,34 +212,34 @@
                      };
 
                      this.category = {
-                         value: undef,
+                         value: undefined,
                          validation: "isString",
                          fallback: ""
                      };
 
                      this.action = {
-                         value: undef,
+                         value: undefined,
                          validation: "isString",
                          fallback: ""
                      };
 
                      this.label = {
-                         value: undef,
+                         value: undefined,
                          validation: "isString",
                          fallback: ""
                      };
 
                      this.value = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalInt",
-                         // Assigning undef to the fallback skips the item.
-                         fallback: undef
+                         // Assigning undefined to the fallback skips the item.
+                         fallback: undefined
                      };
 
                      this.nonInteraction = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalBool",
-                         fallback: undef
+                         fallback: undefined
                      };
 
                  };
@@ -254,9 +258,9 @@
                      };
 
                      this.url = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalString",
-                         fallback: undef
+                         fallback: undefined
                      };
 
                  };
@@ -277,37 +281,37 @@
                      };
 
                      this.orderId = {
-                         value: undef,
+                         value: undefined,
                          validation: "isString",
                          fallback: ""
                      };
 
                      this.sku = {
-                         value: undef,
+                         value: undefined,
                          validation: "isString",
                          fallback: ""
                      };
 
                      this.name = {
-                         value: undef,
+                         value: undefined,
                          validation: "isString",
                          fallback: ""
                      };
 
                      this.category = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalString",
                          fallback: ""
                      };
 
                      this.price = {
-                         value: undef,
+                         value: undefined,
                          validation: "isFloat",
                          fallback: ""
                      };
 
                      this.quantity = {
-                         value: undef,
+                         value: undefined,
                          validation: "isInt",
                          fallback: ""
                      };
@@ -333,55 +337,55 @@
                      };
 
                      this.orderId = {
-                         value: undef,
+                         value: undefined,
                          validation: "isString",
                          fallback: ""
                      };
 
                      this.storeName = {
-                         value: undef,
+                         value: undefined,
                          validation: "isString",
                          fallback: ""
                      };
 
                      this.total = {
-                         value: undef,
+                         value: undefined,
                          validation: "isFloat",
                          fallback: ""
                      };
 
                      this.tax = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalFloat",
                          fallback: ""
                      };
 
                      this.shipping = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalFloat",
                          fallback: ""
                      };
 
                      this.city = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalString",
                          fallback: ""
                      };
 
                      this.city = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalString",
                          fallback: ""
                      };
 
                      this.state = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalString",
                          fallback: ""
                      };
 
                      this.country = {
-                         value: undef,
+                         value: undefined,
                          validation: "optionalString",
                          fallback: ""
                      };
@@ -425,14 +429,16 @@
                          ///     Throws an error if any of the attributes fail validation.
                          /// </summary>
 
+                         var context = this;
+
                          // default attributes are assigned in ga.ApiCall()
                          $.each(this.attributes, function (key, obj) {
 
                              var attr = "data-ga-" + key.toLowerCase(),
                              // Get the attribute data.
-                                 val = obj.value || shell.$elem.data(name) || shell.$elem.attr(attr);
+                                 val = obj.value || context.$elem.data(name) || context.$elem.attr(attr);
 
-                             if (validation[obj.validation] === undef) {
+                             if (validation[obj.validation] === undefined) {
 
                                  throw new TypeError("Unknown validation type");
                              }
@@ -458,7 +464,7 @@
                          /// </summary>
                          ///    <returns type="Array">An array containing a list of method parameters.</returns>
 
-                         // Map a new array getting the default fallback if undefined.
+                         // Map a new array getting the default fallback if undefinedined.
                          var args = $.map(this.attributes, function (obj, key) {
 
                              var type = obj.validation,
@@ -468,7 +474,7 @@
 
                              if ((type === "isInt" || type === "optionalInt") && forceType) {
 
-                                 if (value !== undef) {
+                                 if (value !== undefined) {
 
                                      value = parseInt(value, 10);
 
@@ -476,14 +482,14 @@
 
                              } else if ((type === "isFloat" || type === "optionalFloat") && forceType) {
 
-                                 if (value !== undef) {
+                                 if (value !== undefined) {
 
                                      value = parseFloat(value);
                                  }
 
                              } else if ((type === "isBool" || type === "optionalBool") && forceType) {
 
-                                 if (value !== undef) {
+                                 if (value !== undefined) {
 
                                      value = Boolean(value);
 
@@ -491,7 +497,7 @@
 
                              }
 
-                             return value !== undef ? value : obj.fallback;
+                             return value !== undefined ? value : obj.fallback;
 
                          });
 
@@ -509,16 +515,35 @@
                          ///        The event object normalized according to W3C standards.  
                          ///    </param>
 
-                         var google = window._gaq;
-
                          function push() {
 
                              // Create the argument array to pass to Google.
                              var args = shell.createArgumentArray();
 
-                             // Push the data.
-                             google.push(args);
+                             if (!debug) {
 
+                                 // Get the google _gaq object.
+                                 var google = window._gaq;
+
+                                 if (google) {
+                                     // Push the data.
+                                     google.push(args);
+                                 } else {
+
+                                     throw new ReferenceError("Google Analaytics _gaq variable not found! Please set up Google Analytics properly.");
+
+                                 }
+
+                             }
+                             else {
+                                 if (window.console && window.console.log) {
+
+                                     // Push the data.
+                                     console.log("Pushing Google analytics data.");
+                                     console.log(args);
+
+                                 }
+                             }
                          }
 
                          // Prevent the default action if required.
@@ -528,30 +553,23 @@
 
                          }
 
-                         if (google) {
+                         // Validate the attribute data.
+                         // Something is going on here that won't assign the context.
+                         this.checkAttributes.call(this);
 
-                             // Validate the attribute data.
-                             this.checkAttributes();
+                         // Push to google then call any after code.
+                         $.when(push()).then(function () {
 
-                             // Push to google then call any after code.
-                             $.when(push()).then(function () {
+                             var after = shell.after;
 
-                                 var after = shell.after;
+                             // Run any after code.
+                             if ($.isFunction(after)) {
 
-                                 // Run any after code.
-                                 if ($.isFunction(after)) {
+                                 after(shell.$elem);
 
-                                     after(shell.$elem);
+                             }
 
-                                 }
-
-                             });
-
-                         } else {
-
-                             throw new ReferenceError("Google Analaytics _gaq variable not found! Please set up Google Analytics properly.");
-
-                         }
+                         });
 
                      };
 
@@ -596,7 +614,7 @@
                          throw new ReferenceError("Invalid API name.");
                      }
 
-                     if (apiList[name] === undef) {
+                     if (apiList[name] === undefined) {
                          throw new ReferenceError("Specified API call unknown.");
                      }
 
@@ -650,7 +668,7 @@
                                  setTimeout(function () {
                                      var href = $elem.attr("href");
 
-                                     if (href !== undef && href !== "#") {
+                                     if (href !== undefined && href !== "#") {
                                          document.location = href;
                                      }
 
@@ -673,8 +691,8 @@
                                  setTimeout(function () {
                                      var href = $elem.attr("href");
 
-                                     if (href !== undef) {
-                                         document.location = href;
+                                     if (href !== undefined) {
+                                         window.location = href;
                                      }
 
                                  }, 500);
@@ -711,7 +729,7 @@
                              return false;
                          });
 
-                         if (tracker !== undef) {
+                         if (tracker !== undefined) {
                              // Push the analytics data.
                              tracker.pushToGoogle(event);
                          }

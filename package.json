@@ -1,0 +1,37 @@
+{
+    "name": "jquery.googleanalytics",
+    "version": "1.0.0",
+    "title": "jQuery.googleAnalytics()",
+    "author": {
+        "name": "James South",
+        "url": "https://github.com/jimbobsquarepants"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://www.opensource.org/licenses/MIT"
+        },
+        {
+            "type": "GPLv2",
+            "url": "http://www.opensource.org/licenses/GPL-2.0"
+        }
+    ],
+    "dependencies": {
+        "jquery": "1.7.1"
+    },
+    "description": "The main purpose of this plugin is to allow Google analytics to be used without the need to insert JavaScript into your page.",
+    "keywords": [
+        "analytics",
+        "google"
+    ],
+    "homepage": "https://github.com/jimbobsquarepants/jquery-google-analytics",
+    "maintainers": [
+        {
+            "name": "James South",
+            "url": "https://github.com/jimbobsquarepants"
+        }
+    ],
+    "files": [
+        "jquery.googleanalytics.js"
+    ]
+}
