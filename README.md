@@ -81,7 +81,9 @@ Usage
 
 Examples
 -----
-    <a class="trackEvent" href="#" data-ga-category="category" data-ga-action="action"  data-ga-label="label" >Click to test trackEvent</a>
+    <a class="trackEvent" href="#" data-ga-category="category" data-ga-action="action"  data-ga-label="label" >
+        Click to test trackEvent
+    </a>
     $("a.trackEvent").googleAnalytics("trackEvent", "click");
 
 Will bind the `_trackEvent` analytics method to click event of the selected DOM object.
