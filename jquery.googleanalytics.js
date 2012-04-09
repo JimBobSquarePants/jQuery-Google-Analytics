@@ -1,5 +1,5 @@
 /*!
-* jQuery Google Analytics Plugin v1.1.0
+* jQuery Google Analytics Plugin v1.1.1
 * https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
 
 * Copyright 2012, James South
@@ -44,10 +44,10 @@
                 /// <summary>
                 ///     Checks to see if a given object is a valid non-empty string.
                 /// </summary>
-                ///    <param name="obj" type="String">
-                ///        The object to check against.
-                ///    </param>
-                ///    <returns type="Boolean">True if the string is valid, otherwise false.</returns>
+                /// <param name="obj" type="String">
+                ///     The object to check against.
+                /// </param>
+                /// <returns type="Boolean">True if the string is valid, otherwise false.</returns>
 
                 var empty = true;
 
@@ -60,16 +60,16 @@
 
             },
 
-            optionalString: function (obj) {
+            optString: function (obj) {
                 /// <summary>
                 ///     Checks to see if a given object is a valid non-empty string.
                 ///     Since the object is optional if it is equal to undefinedined then validation
                 ///     will return true.
                 /// </summary>
-                ///    <param name="obj" type="String">
-                ///        The object to check against.
-                ///    </param>
-                ///    <returns type="Boolean">True if the string is valid, otherwise false.</returns>
+                /// <param name="obj" type="String">
+                ///     The object to check against.
+                /// </param>
+                /// <returns type="Boolean">True if the string is valid, otherwise false.</returns>
 
                 if (obj === undefined) {
                     return true;
@@ -84,25 +84,25 @@
                 ///     http://stackoverflow.com/questions/3885817/how-to-check-if-a-number-is-float-or-integer
                 ///     http://lawrence.ecorp.net/inet/samples/regexp-validate2.php
                 /// </summary>
-                ///    <param name="obj" type="Integer">
-                ///        The object to check against.
-                ///    </param>
-                ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
+                /// <param name="obj" type="Integer">
+                ///     The object to check against.
+                /// </param>
+                /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
                 return (/^[\-+]?\d+$/).test(obj) || (obj === +obj && obj === (obj | 0));
 
             },
 
-            optionalInt: function (obj) {
+            optInt: function (obj) {
                 /// <summary>
                 ///     Checks to see if a given object is a valid integer.
                 ///     Since the object is optional if it is equal to undefinedined then validation
                 ///     will return true.
                 /// </summary>
-                ///    <param name="obj" type="Integer">
-                ///        The object to check against.
-                ///    </param>
-                ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
+                /// <param name="obj" type="Integer">
+                ///     The object to check against.
+                /// </param>
+                /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
                 if (obj === undefined) {
                     return true;
@@ -117,24 +117,24 @@
                 ///     http://stackoverflow.com/questions/3885817/how-to-check-if-a-number-is-float-or-integer
                 ///     http://lawrence.ecorp.net/inet/samples/regexp-validate2.php
                 /// </summary>
-                ///    <param name="obj" type="Float">
-                ///        The object to check against.
-                ///    </param>
-                ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
+                /// <param name="obj" type="Float">
+                ///     The object to check against.
+                /// </param>
+                /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
                 return (/^[\-+]?\d+(\.\d+)?$/).test(obj) || (obj === +obj && obj !== (obj | 0));
             },
 
-            optionalFloat: function (obj) {
+            optFloat: function (obj) {
                 /// <summary>
                 ///     Checks to see if a given object is a valid float.
                 ///     Since the object is optional if it is equal to undefinedined then validation
                 ///     will return true.
                 /// </summary>
-                ///    <param name="obj" type="Float">
-                ///        The object to check against.
-                ///    </param>
-                ///    <returns type="Boolean">True if the number is valid, otherwise false.</returns>
+                /// <param name="obj" type="Float">
+                ///     The object to check against.
+                /// </param>
+                /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
                 if (obj === undefined) {
                     return true;
@@ -147,25 +147,26 @@
                 /// <summary>
                 ///     Checks to see if a given object is a valid boolean.
                 /// </summary>
-                ///    <param name="obj" type="Boolean">
-                ///        The object to check against.
-                ///    </param>
-                ///    <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
+                /// <param name="obj" type="Boolean">
+                ///     The object to check against.
+                /// </param>
+                /// <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
 
                 return (obj === true || obj === "true") || (obj === false || obj === "false");
 
             },
 
-            optionalBool: function (obj) {
+            optBool: function (obj) {
                 /// <summary>
                 ///     Checks to see if a given object is a valid boolean.
                 ///     Since the object is optional if it is equal to undefinedined then validation
                 ///     will return true.
                 /// </summary>
-                ///    <param name="obj" type="Boolean">
-                ///        The object to check against.
-                ///    </param>
-                ///    <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
+                /// <param name="obj" type="Boolean">
+                ///     The object to check against.
+                /// </param>
+                /// <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
+           
                 if (obj === undefined) {
                     return true;
                 }
@@ -211,13 +212,13 @@
 
                     value: {
                         value: null,
-                        validation: "optionalInt",
+                        validation: "optInt",
                         returnType: "integer"
                     },
 
                     nonInteraction: {
                         value: null,
-                        validation: "optionalBool",
+                        validation: "optBool",
                         returnType: "boolean"
                     }
                 },
@@ -236,7 +237,7 @@
 
                     url: {
                         value: undefined,
-                        validation: "optionalString",
+                        validation: "optString",
                         returnType: "string"
                     }
                 }
@@ -330,7 +331,7 @@
                     /// </param>
                     
                     if (!api || typeof api !== "string") {
-                        throw new ReferenceError("Invalid API method.");
+                        throw new TypeError("Invalid API method.");
                     }
 
                     if (!googleApi[api]) {
@@ -357,13 +358,13 @@
                                             window.location = href;
                                         }
 
-                                    }, 500);
+                                    }, 100);
                                 }
                             );
 
 
                         } else {
-                            throw new ReferenceError("Google Analaytics _gaq variable not found! Please set up Google Analytics properly.");
+                            throw new ReferenceError("Google Analaytics _gaq is not defined");
                         }
                     } else {
 
