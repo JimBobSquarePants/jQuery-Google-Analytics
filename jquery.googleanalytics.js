@@ -344,12 +344,14 @@
                         var gaq = window._gaq;
 
                         if (gaq) {
+                            
+                            // Set the context for our deferred callback.
+                            var that = this;
+                            
                             // Push the data.
                             $.when(gaq.push(args)).done(
                                 function () {
                                     // Redirect the location - delayed so that any other page functionality has time to run.
-
-                                    var that = this;
 
                                     setTimeout(function () {
                                         var href = that.attr("href");
