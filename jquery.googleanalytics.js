@@ -415,4 +415,4 @@
 
     };
 
-} (jQuery || _jQuery));
+} (jQuery));
