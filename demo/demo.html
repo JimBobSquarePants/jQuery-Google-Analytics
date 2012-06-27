@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    body
+    {
+        color:#444;
+        font-family: Segoe UI,verdana,helvetica,arial,sans-serif;
+    }
+
+    .box .wrapper
+    {
+        padding:14px;
+    }
+
+    a
+    {
+        color:#F68A39;
+    }
+
+    a:hover, a:active
+    {
+        text-decoration:none;
+    }
+
+    a:active
+    {
+        color:#CE3709;
+    }
+
+    a:visited
+    {
+        color:#000;
+    }
+
+    h1
+    {
+        font-size:28px;
+        padding-bottom:14px;
+    }
+
+    h2
+    {
+        font-size:22px;
+    }
+
+    p
+    {
+        padding:14px 0;
+    }
+
+    .pre
+    {
+        font-family: consolas, monospace;
+        background:#EFEFEF;
+        padding: 0 2px;
+    }
+
+    .ib
+    {
+     display:inline-block;
+ }
+ ​
+ </style>
+</head>
+<body>
+    <div class="box">
+        <div class="wrapper">
+            <h1>jQuery Google Analytics tests</h1>
+            <h2>Event tracking</h2>
+            <p>
+                Track event with all attributes added. Triggered on <span class="pre ib">click</span>.
+            </p>
+            <a class="trackEvent" href="#" data-ga-category="testing category" data-ga-action="testing action" data-ga-label="testing label" data-ga-value="0" data-ga-noninteraction="true">Click to test trackEvent</a>
+            <br/>
+            <p>
+                Track event minus <span class="pre ib">value</span> and <span class="pre ib">nonInteraction</span> attributes. Triggered on <span class="pre ib">click</span>.
+            </p>
+            <a class="trackEvent" href="#" data-ga-category="testing category2" data-ga-action="testing action2" data-ga-action="testing action2" data-ga-label="testing label2" >Click to test trackEvent2</a>
+            <br/>
+            <br/>
+            <br/>
+            <h2>Pageview tracking</h2>
+            <p>
+                Track pageview with all attributes added. Triggered on <span class="pre ib">click</span>.
+            </p>
+            <a class="trackPageview" href="#" data-ga-url="/url">Click to test trackPageview</a>
+            <br/>
+            <p>
+                Track pageview minus <span class="pre ib">url</span> attribute. Triggered on <span class="pre ib">load</span>.
+            </p>
+            <span class="trackPageview2">Triggers the analytics on page load</span>
+        </div>
+    </div>​
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery.googleanalytics.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("a.trackEvent").googleAnalytics("trackEvent", "click", true);
+        $("a.trackPageview").googleAnalytics("trackPageview", "click", true);
+        $("span.trackPageview2").googleAnalytics("trackPageview", "load", true);
+
+    });
+    </script>
+</body>
+</html>

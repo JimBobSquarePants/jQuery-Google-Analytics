@@ -1,5 +1,5 @@
 /*!
-* jQuery Google Analytics Plugin v1.1.1
+* jQuery Google Analytics Plugin v1.1.2
 * https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
 
 * Copyright 2012, James South
@@ -277,7 +277,7 @@
                         throw new Error("object validation error on " + name);
                     }
 
-                    // Assign the value. 
+                    // Assign the value.
                     // Some analytics methods accept numbers as strings so we check the return type.
                     switch (param.returnType) {
                         case "integer":
@@ -296,7 +296,7 @@
                     ///     Creates the parameter array to pass to the google _gaq.push() method.
                     /// </summary>
                     /// <param name="api" type="Object">
-                    ///     An object containing all the api relevent information to 
+                    ///     An object containing all the api relevent information to
                     ///     allow validation of the given targets properties.
                     /// </param>
                     /// <returns type="Array">The array of necessary parameters.</returns>
@@ -326,7 +326,7 @@
                     ///     Tracks the event pushing the elements properties to the google _gaq.push() method.
                     /// </summary>
                     /// <param name="api" type="Object">
-                    ///     An object containing all the api relevent information to 
+                    ///     An object containing all the api relevent information to
                     ///     allow validation of the given targets properties.
                     /// </param>
                     
@@ -385,19 +385,8 @@
 
         if (eventType.toLowerCase() === "load") {
 
-            // Bind any standard events.
-            $(body).on("click", selector, function (event) {
+            methods.trackEvent.call($(this), apiName);
 
-                event.preventDefault();
-                methods.trackEvent.call($(this), apiName);
-
-            });
-
-            // Trigger the click event.
-            $(this).trigger("click");
-
-            // Unbind the event.
-            $(body).off("click", selector);
         }
         else {
 
