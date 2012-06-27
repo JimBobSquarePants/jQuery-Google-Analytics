@@ -17,7 +17,7 @@
         }
     ],
     "dependencies": {
-        "jquery": "1.7.1"
+        "jquery": ">=1.7.1"
     },
     "description": "The main purpose of this plugin is to allow Google analytics to be used without the need to insert JavaScript into your page.",
     "keywords": [
