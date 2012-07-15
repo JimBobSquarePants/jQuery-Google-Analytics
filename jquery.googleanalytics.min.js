@@ -1,6 +1,6 @@
 /*!
 * jQuery Google Analytics Plugin v1.1.2
-* https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
+* https://github.com/JimBobSquarePants/jQuery-Google-Analytics/
 
 * Copyright 2012, James South
 * Dual licensed under the MIT or GPL Version 2 licenses.
