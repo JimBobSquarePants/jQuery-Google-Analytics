@@ -1,7 +1,7 @@
 jQuery Google Analytics Plugin
 =========================
 
-A jQuery plugin that helps you set up [Event Tracking With Google Analytics](http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html).
+A jQuery plugin that helps you set up [Event Tracking With Google Analytics](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide).
 
 
 Features
@@ -21,15 +21,38 @@ Dependencies
 
 Usage
 -----
+The default behaviour of the plugin is to automagically search your page for any elements containing html5 data attributes that start with `data-ga`.
 
-`$(selector).googleAnalytics(apiName, eventType, debug)` to initialize tracking at selected elements.
+This will then add tracking defaulting to the more commonly used `_trackevent` method setting the parameters to pass to that method from the corresponding data attributes.
 
- - **apiName**
-   The type of Google event to track. Currently tracked events are.
-        1. trackevent.
-        2 .trackPageView. 
+To alter that default behaviour a data api has been provided.
 
- - **eventType**
+e.g.
+
+    // Unbind the default behaviour
+    $(document).off("ready.ga").on("ready", function () {
+
+        // Set some options the ones below are the defaults.
+        var options = {
+              event: "trackEvent", // The event name unprefixed. 
+              handler: "click", // The eventhandler to trigger the tracking. 
+                                // Using 'load' will track immediately.
+              debug: false // Whether to run in debug mode.
+        };
+
+        // Bind using the custom selector.        
+        $("selector").googleAnalytics(options);
+       
+    });
+
+
+ - **event**
+   The type of Google event to track. Used unprefixed with '_'. Currently tracked events are.
+
+    1. [_trackEvent(category, action, opt_label, opt_value, opt_noninteraction)](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide).
+    2. [_trackPageview(opt_pageURL)](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview).
+
+ - **handler**
    A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
 
  - **debug**
@@ -41,12 +64,12 @@ Examples
     <a class="trackEvent" href="#" data-ga-category="category" data-ga-action="action"  data-ga-label="label" >
         Click to test trackEvent
     </a>
-    $("a.trackEvent").googleAnalytics("trackEvent", "click");
+    $("a.trackEvent").googleAnalytics({event:"trackEvent", handler:"click"});
 
 Will bind the `_trackEvent` analytics method to click event of the selected DOM object.
 
 	<a class="trackPageview" href="#" data-ga-url="/some other url">Click to test trackPageview</a>
-    $("a.trackPageview").googleAnalytics("trackPageview", "click");    
+    $("a.trackPageview").googleAnalytics({event:"trackPageview", handler:"click"});    
 	
 Will bind the `_trackPageview` analytics method to click event of the selected DOM object.
 

@@ -1,6 +1,6 @@
 {
     "name": "jquery.googleanalytics",
-    "version": "1.1.2",
+    "version": "2.0.0",
     "title": "jQuery.googleAnalytics()",
     "author": {
         "name": "James South",
@@ -10,19 +10,17 @@
         {
             "type": "MIT",
             "url": "http://www.opensource.org/licenses/MIT"
-        },
-        {
-            "type": "GPLv2",
-            "url": "http://www.opensource.org/licenses/GPL-2.0"
         }
     ],
     "dependencies": {
         "jquery": ">=1.7.0"
     },
-    "description": "The main purpose of this plugin is to allow Google analytics to be used without the need to insert JavaScript into your page.",
+    "description": "The main purpose of this plugin is to allow Google analytics event tracking to be used without the need to insert inline JavaScript into your page.",
     "keywords": [
         "analytics",
-        "google"
+        "google",
+		"seo",
+		"tracking"
     ],
     "homepage": "https://github.com/jimbobsquarepants/jquery-google-analytics",
     "maintainers": [
