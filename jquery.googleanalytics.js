@@ -398,7 +398,12 @@
 
             } else {
 
-                var handler = data.options.handler.toLowerCase();
+                var handler = data.options.handler.toLowerCase(),
+                    // Check for the event attr here as it might be other than the default.
+                    event = data.$element.attr("data-ga-event");
+
+                // Overwrite if necessary.
+                $.extend(data.options, { event: event });
 
                 // Build the data as we have nothing there.
                 // First assign the event.

@@ -20,7 +20,7 @@
             font-family: "Segoe UI","Segoe","Segoe WP","Tahoma","Verdana","Arial","sans-serif";
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             font-weight: 400;
         }
 
@@ -34,7 +34,7 @@
             font-family: consolas,monospace, serif;
             background: #222;
             color: #bbb;
-            border-radius: 4px;
+            border-radius: 2px;
         }
 
         pre {
@@ -44,11 +44,24 @@
         code {
             padding: .2em 1em;
             font-size: .9em;
+            text-shadow: none;
         }
 
         pre > code {
             padding: 0;
         }
+
+        .fork {
+            position: fixed;
+            z-index: 101;
+            top: 0;
+            right: 0;
+        }
+
+            .fork img {
+                border: 0;
+            }
+
 
         .break-word {
             /* Internet Explorer 5.5+ */
@@ -67,14 +80,163 @@
         .header {
             background: #1570A6;
             color: #fff;
+            padding: 1em 0;
         }
 
         .result {
             display: none;
+            margin: 1em 0;
+            padding: 0 .5em 1em;
+            background-color: #FCF8E3;
+            border: 2px solid #F2E187;
+            border-radius: 2px;
+            color: #9C8611;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
         }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: .5em 1em;
+            margin-bottom: 0;
+            font-size: 1em;
+            color: #454545;
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+            vertical-align: middle;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            background-image: -moz-linear-gradient(top, #f7f7f7 0%, #dddddd 100%); /* FF3.6+ */
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+            background-image: -webkit-linear-gradient(top, #f7f7f7 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+            background-image: -o-linear-gradient(top, #f7f7f7 0%,#dddddd 100%); /* Opera 11.10+ */
+            background-image: -ms-linear-gradient(top, #f7f7f7 0%,#dddddd 100%); /* IE10+ */
+            background-image: linear-gradient(to bottom, #f7f7f7 0%,#dddddd 100%); /* W3C */
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+            border: 1px solid #cccccc;
+            border-color: #d2d2d2 #d2d2d2 #b3b3b3;
+            border-radius: 3px;
+            -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+            /* ie9 hack to prevent background color mix */
+            .btn:not(dummy) {
+                filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+            }
+
+        .lt-ie8 .btn,
+        .lt-ie8 .btn:hover,
+        .lt-ie8 .btn:active,
+        .lt-ie8 .btn.active {
+            display: inline;
+            margin-left: .3em;
+            zoom: 1;
+            /* disable border */
+            filter: chroma(color=#000000);
+        }
+
+            .lt-ie8 .btn:first-child {
+                margin-left: 0;
+            }
+
+        /* States */
+        .btn:hover,
+        .btn:active,
+        .btn.active,
+        .btn.disabled,
+        .btn[disabled] {
+            color: #454545;
+            background-color: #ebebeb;
+            /* disable the filter */
+            filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+        }
+
+        .btn:hover {
+            color: #454545;
+            text-decoration: none;
+            background-color: #dddddd;
+            /*slide the background up */
+            background-position: 0 -15px;
+            -webkit-transition: background-position 0.2s linear;
+            -moz-transition: background-position 0.2s linear;
+            -o-transition: background-position 0.2s linear;
+            transition: background-position 0.2s linear;
+        }
+
+        .btn:focus {
+            outline: thin dotted #d2d2d2;
+            outline: 5px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+
+        .btn:active,
+        .btn.active {
+            background-color: #f5f5f5;
+            background-image: none;
+            outline: 0;
+            -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn.disabled,
+        .btn[disabled] {
+            cursor: default;
+            background-color: #ebebeb;
+            background-image: none;
+            opacity: 0.65;
+            filter: alpha(opacity=65);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .btn:visited {
+            color: #454545;
+        }
+
+        /* Prime button */
+        .btn-prime {
+            color: #fff;
+            text-shadow: 0 -1px 0 #00527b;
+            border-color: #0087ca #006da3 #00527b;
+            background: #00a1f1; /* Old browsers */
+            background: -moz-linear-gradient(top, #00a1f1 0%, #0087ca 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00a1f1), color-stop(100%,#0087ca)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #00a1f1 0%,#0087ca 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #00a1f1 0%,#0087ca 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #00a1f1 0%,#0087ca 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #00a1f1 0%,#0087ca 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a1f1', endColorstr='#0087ca',GradientType=0 ); /* IE6-9 */
+        }
+
+            .btn-prime:hover {
+                color: #fff;
+                background: #0087ca;
+            }
+
+            .btn-prime:focus {
+                outline: thin dotted #00527b;
+            }
+
+            .btn-prime.active,
+            .btn-prime:active {
+                color: #fff;
+                background-color: #0caeff;
+            }
+
+            .btn-prime:visited {
+                color: #fff;
+            }
     </style>
 </head>
 <body>
+    <a class="fork" href="https://github.com/JimBobSquarePants/jQuery-Google-Analytics" rel="external">
+        <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
+    </a>
     <div class="page no-box">
         <div class="header">
             <div class="container">
@@ -88,6 +250,9 @@
                     <p>
                         A jQuery plugin that helps you easily set up <a href="https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide">Event Tracking With Google Analytics</a>. When added to a page it will automagically add event tracking to any item containing the appropriate html5 data-attributes.
                     </p>
+                    <h2>Get it here.</h2>
+                    <a href="http://jimbobsquarepants.github.com/Flexo/css/flexo.css" class="btn btn-prime" target="_blank">jquery.googleanalytics v2.0.0</a>
+                    <p>IE 7+, Firefox, Safari, Opera, Chrome</p>
                 </div>
                 <div class="clmn2">
                     <h2>Features</h2>
@@ -102,26 +267,64 @@
                 </div>
             </div>
             <h2>Demo</h2>
-            <p>The following link contains all the possible parameters to send to the Analytics <code>_trackEvent</code>. All parameters are validated against the Google Analytics Api constraints. </p>
+            <p>The following link contains all the possible parameters to send to the Analytics <code>_trackEvent</code> and <code>_trackPageview</code> methods. All parameters are validated against the Google Analytics Api constraints. </p>
             <pre class="break-word">
                 <code>
+&lt;!--_trackEvent markup---&gt;
 &lt;a href="#" data-ga-category="test category" data-ga-action="test action" data-ga-label="test label" data-ga-value="0" data-ga-noninteraction="true"&gt;
     Click to test trackEvent
 &lt;/a&gt;
+
+&lt;!--trackPageview markup---&gt;
+&lt;a href="#" data-ga-event="trackPageview" data-ga-url="/url"&gt;Click to test trackPageview&lt;/a&gt;
                 </code>
             </pre>
-            <p><a href="#" data-ga-category="test category" data-ga-action="test action" data-ga-label="test label" data-ga-value="0" data-ga-noninteraction="true">Click to test trackEvent</a></p>
+            <p><a href="#" class="btn" data-ga-category="test category" data-ga-action="test action" data-ga-label="test label" data-ga-value="0" data-ga-noninteraction="true">Click to test trackEvent</a></p>
+
+            <p><a href="#" class="btn" data-ga-event="trackPageview" data-ga-url="/url">Click to test trackPageview</a></p>
             <div class="result">
                 <h3>Analytics Arguments</h3>
+                <p>Parameters passed to Google's <code>gaq</code> array are:</p>
                 <div></div>
             </div>
+            <div>
+                <h2>Wait there's more...</h2>
+                <p>Whilst the default behaviour should cover most scenarios there's always something that comes up which requires custom behaviour. To cater for this the plugin provides a data api and a <code>tracked.ga</code> event for handling callbacks</p>
+                <p>Here's an example of how to override the default behaviour as used on this page.</p>
+                <pre class="break-word">
+                    <code>
+        (function ($) {
+            // Unbind the default behaviour
+            $(document).off("ready.ga").on("ready", function () {
 
+                // Set some options. The ones below are the defaults.
+                var $result = $(".result"),
+                    options = {
+                        event: "trackEvent", // The event name unprefixed. 
+                        handler: "click", // The eventhandler to trigger the tracking. 
+                                          // Using 'load' will track immediately.
+                        debug: true // Whether to run in debug mode.
+                    };
+
+                // Bind using the custom selector.        
+                $(":ga").googleAnalytics(options).on("tracked.ga", function (event) {
+
+                    var args = $(event.target).data("ga").args;
+
+                    $result.children("div").empty().html(args.toString().replace(/,/g, ", ")).end().show();
+
+                });
+
+            });
+        }(jQuery));
+                    </code>
+                </pre>
+            </div>
         </div>
         <div class="page-push"></div>
     </div>
     <div class="page-footer"></div>
 
-    <!--  <a href="#" data-googleanalytics="{event:trackPageView,handler:hover,debug:true}">test link</a>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="jquery.googleanalytics.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -129,7 +332,7 @@
             // Unbind the default behaviour
             $(document).off("ready.ga").on("ready", function () {
 
-                // Set some options the ones below are the defaults.
+                // Set some options. The ones below are the defaults.
                 var $result = $(".result"),
                     options = {
                         event: "trackEvent", // The event name unprefixed. 
@@ -145,7 +348,6 @@
 
                     $result.children("div").empty().html(args.toString().replace(/,/g, ", ")).end().show();
 
-                    console.log(args.toString());
                 });
 
             });
