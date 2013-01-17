@@ -1,7 +1,7 @@
 {
-    "name": "jquery.googleanalytics",
+    "name": "googleanalytics",
     "version": "1.1.2",
-    "title": "jQuery.googleAnalytics()",
+    "title": "jQuery googleAnalytics",
     "author": {
         "name": "James South",
         "url": "https://github.com/jimbobsquarepants"
