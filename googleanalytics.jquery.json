@@ -1,12 +1,7 @@
 {
     "name": "googleanalytics",
-<<<<<<< HEAD:googleanalytics.jquery.json
-    "version": "1.1.2",
-    "title": "jQuery googleAnalytics",
-=======
     "version": "2.0.0",
     "title": "jQuery GoogleAnalytics",
->>>>>>> origin/dev:googleanalytics.jquery.json
     "author": {
         "name": "James South",
         "url": "https://github.com/jimbobsquarepants"
