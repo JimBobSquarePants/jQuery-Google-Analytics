@@ -49,8 +49,8 @@ e.g.
  - **event**
    The type of Google event to track. Used unprefixed with '_'. Currently tracked events are.
 
-    1. [_trackEvent(category, action, opt_label, opt_value, opt_noninteraction)](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide).
-    2. [_trackPageview(opt_pageURL)](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview).
+  1. [_trackEvent(category, action, opt_label, opt_value, opt_noninteraction)](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide).
+  2. [_trackPageview(opt_pageURL)](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview).
 
  - **handler**
    A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
