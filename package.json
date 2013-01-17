@@ -19,7 +19,7 @@
     "dependencies": {
         "jquery": ">=1.7.0"
     },
-    "description": "The main purpose of this plugin is to allow Google analytics to be used without the need to insert JavaScript into your page.",
+    "description": "A jQuery plugin that allow event tracking with Google analytics to be used without the need to insert inline JavaScript into your page.",
     "keywords": [
         "analytics",
         "google"
