@@ -1,7 +1,12 @@
 {
     "name": "googleanalytics",
+<<<<<<< HEAD:googleanalytics.jquery.json
     "version": "1.1.2",
     "title": "jQuery googleAnalytics",
+=======
+    "version": "2.0.0",
+    "title": "jQuery GoogleAnalytics",
+>>>>>>> origin/dev:googleanalytics.jquery.json
     "author": {
         "name": "James South",
         "url": "https://github.com/jimbobsquarepants"
@@ -10,10 +15,6 @@
         {
             "type": "MIT",
             "url": "http://www.opensource.org/licenses/MIT"
-        },
-        {
-            "type": "GPLv2",
-            "url": "http://www.opensource.org/licenses/GPL-2.0"
         }
     ],
     "dependencies": {
@@ -22,7 +23,9 @@
     "description": "A jQuery plugin that allow event tracking with Google analytics to be used without the need to insert inline JavaScript into your page.",
     "keywords": [
         "analytics",
-        "google"
+        "google",
+		"seo",
+		"tracking"
     ],
     "homepage": "https://github.com/jimbobsquarepants/jquery-google-analytics",
     "maintainers": [
