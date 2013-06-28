@@ -132,7 +132,7 @@
             /// </param>
             /// <returns type="Boolean">True if the string is valid, otherwise false.</returns>
 
-            if (obj === null) {
+            if (obj === null || typeof obj === "undefined") {
                 return true;
             }
 
@@ -165,7 +165,7 @@
             /// </param>
             /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-            if (obj === null) {
+            if (obj === null || typeof obj === "undefined") {
                 return true;
             }
 
@@ -197,7 +197,7 @@
             /// </param>
             /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-            if (obj === null) {
+            if (obj === null || typeof obj === "undefined") {
                 return true;
             }
 
@@ -228,7 +228,7 @@
             /// </param>
             /// <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
 
-            if (obj === null) {
+            if (obj === null || typeof obj === "undefined") {
                 return true;
             }
 
