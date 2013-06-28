@@ -1,5 +1,5 @@
 /*!
-* jQuery Google Analytics Plugin v2.0.2
+* jQuery Google Analytics Plugin v2.0.3
 * https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
 
 * Copyright 2012, James South
@@ -10,9 +10,9 @@
 /*It is recommended that this file is minified before serving.*/
 
 /*global jQuery, console */
-/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:false, strict:true, undef:true, curly:true, browser:true, maxerr:50 */
+/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:false, strict:true, curly:true, browser:true, maxerr:50 */
 
-(function ($, window, undef) {
+(function ($, window) {
 
     "use strict";
 
@@ -62,7 +62,7 @@
             },
             label: {
                 value: null,
-                validation: "isString",
+                validation: "optString",
                 type: "string"
             },
             value: {
@@ -89,7 +89,7 @@
                 type: "string"
             },
             url: {
-                value: undef,
+                value: null,
                 validation: "optString",
                 type: "string"
             }
@@ -124,7 +124,7 @@
         optString: function (obj) {
             /// <summary>
             ///     Checks to see if a given object is a valid non-empty string.
-            ///     Since the object is optional if it is equal to undefined then validation
+            ///     Since the object is optional if it is equal to null then validation
             ///     will return true.
             /// </summary>
             /// <param name="obj" type="String">
@@ -132,7 +132,7 @@
             /// </param>
             /// <returns type="Boolean">True if the string is valid, otherwise false.</returns>
 
-            if (obj === undef) {
+            if (obj === null) {
                 return true;
             }
 
@@ -157,7 +157,7 @@
         optInt: function (obj) {
             /// <summary>
             ///     Checks to see if a given object is a valid integer.
-            ///     Since the object is optional if it is equal to undefined then validation
+            ///     Since the object is optional if it is equal to null then validation
             ///     will return true.
             /// </summary>
             /// <param name="obj" type="Integer">
@@ -165,7 +165,7 @@
             /// </param>
             /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-            if (obj === undef) {
+            if (obj === null) {
                 return true;
             }
 
@@ -189,7 +189,7 @@
         optFloat: function (obj) {
             /// <summary>
             ///     Checks to see if a given object is a valid float.
-            ///     Since the object is optional if it is equal to undefined then validation
+            ///     Since the object is optional if it is equal to null then validation
             ///     will return true.
             /// </summary>
             /// <param name="obj" type="Float">
@@ -197,7 +197,7 @@
             /// </param>
             /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-            if (obj === undef) {
+            if (obj === null) {
                 return true;
             }
 
@@ -220,7 +220,7 @@
         optBool: function (obj) {
             /// <summary>
             ///     Checks to see if a given object is a valid boolean.
-            ///     Since the object is optional if it is equal to undefined then validation
+            ///     Since the object is optional if it is equal to null then validation
             ///     will return true.
             /// </summary>
             /// <param name="obj" type="Boolean">
@@ -228,7 +228,7 @@
             /// </param>
             /// <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
 
-            if (obj === undef) {
+            if (obj === null) {
                 return true;
             }
 
@@ -246,7 +246,7 @@
             ///     Throws an error if any of the attributes fail validation.
             /// </summary>
             /// <param name="param" type="Object">
-            ///     An object containing all the necessary infomation to allow
+            ///     An object containing all the necessary information to allow
             ///     validation of the given targets properties.
             /// </param>
             /// <param name="name" type="String">
@@ -287,10 +287,10 @@
         },
         createArgs: function () {
             /// <summary>
-            ///     Creates the parameter array to pass to the google _gaq.push() method.
+            ///     Creates the parameter array to pass to the Google gaq/_gaq.push() method.
             /// </summary>
             /// <param name="api" type="Object">
-            ///     An object containing all the api relevent information to
+            ///     An object containing all the api relevant information to
             ///     allow validation of the given targets properties.
             /// </param>
             /// <returns type="Array">The array of necessary parameters.</returns>
@@ -393,7 +393,7 @@
 
 
                 } else {
-                    throw new ReferenceError("Google Analaytics _gaq is not defined");
+                    throw new ReferenceError("Google Analytics _gaq/gaq object is not defined.");
                 }
             }
         }
