@@ -1,5 +1,5 @@
 /*!
-* jQuery Google Analytics Plugin v2.0.0
+* jQuery Google Analytics Plugin v2.0.2
 * https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
 
 * Copyright 2012, James South
@@ -9,7 +9,7 @@
 */
 /*It is recommended that this file is minified before serving.*/
 
-/*global $, _gaq, jQuery, _jQuery, console */
+/*global jQuery, console */
 /*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:false, strict:true, undef:true, curly:true, browser:true, maxerr:50 */
 
 (function ($, window, undef) {
@@ -35,13 +35,13 @@
 
     $.googleAnalyticsApi = {
         /// <summary>
-        ///     A representation of available methods provided by google analytics.
+        ///     A representation of available methods provided by Google analytics.
         /// </summary>
 
         trackEvent: {
             /// <summary>
             ///     The trackEvent object defines all the necessary parameters
-            ///     to send event tracking analytics data to google.
+            ///     to send event tracking analytics data to Google.
             ///     https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
             /// </summary>
 
@@ -79,7 +79,7 @@
         trackPageview: {
             /// <summary>
             ///     The trackEvent object defines all the necessary parameters
-            ///     to send page tracking analytics data to google.
+            ///     to send page tracking analytics data to Google.
             ///     https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview
             /// </summary>
 
@@ -343,7 +343,7 @@
             }
             else {
 
-                var gaq = window._gaq;
+                var gaq = window._gaq || window.gaq;
 
                 if (gaq) {
 
@@ -351,17 +351,40 @@
                     var self = this;
 
                     // Push the data.
-                    $.when(gaq.push(args)).done(
+                    $.when(gaq.push(this.args)).done(
                         function () {
 
-                            this.$element.trigger(trackedEvent);
+                            self.$element.trigger(trackedEvent);
 
                             // Redirect the location - delayed so that any other page functionality has time to run.
                             setTimeout(function () {
-                                var href = self.attr("href");
+                                var href = self.$element.attr("href"),
+                                    target = self.$element.attr("target");
 
                                 if (href && href.indexOf("#") !== 0) {
-                                    window.location = href;
+
+                                    // Handle external window requests.
+                                    if (target && target === "_blank") {
+                                        window.open(href, target);
+                                    }
+                                    else {
+                                        // IE8 doesn't pass the referrer to the next page
+                                        // using window.location. We create a hidden link to 
+                                        // counter that. Fixes issue #2
+                                        // http://stackoverflow.com/a/7917528/427899
+                                        var a = document.createElement("a");
+
+                                        if (!a.click) {
+                                            // Old FF and Secure links.
+                                            window.location = href;
+                                            return;
+                                        }
+
+                                        a.setAttribute("href", href);
+                                        a.style.display = "none";
+                                        document.body.appendChild(a);
+                                        a.click();
+                                    }
                                 }
 
                             }, 100);
