@@ -1,16 +1,16 @@
 /*!
-* jQuery Google Analytics Plugin v2.0.4
+* jQuery Google Analytics Plugin v2.0.6
 * https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
 
-* Copyright 2012, James South
-* Released under the MIT license
-* http://jquery.org/license
+* Copyright 2013, James South
+* Released under the Apache 2.0 license
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 */
 /*It is recommended that this file is minified before serving.*/
 
 /*global jQuery, console */
-/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:false, strict:true, curly:true, browser:true, maxerr:50 */
+/*jshint forin:true, noarg:true, noempty:true, eqnull:true, eqeqeq:true, bitwise:false, strict:true, curly:true, browser:true, maxerr:50 */
 
 (function ($, window) {
 
@@ -112,7 +112,8 @@
 
             var empty = true;
 
-            if (obj && typeof obj === "string") {
+            // Don't test the type here just test for emptiness.
+            if (obj) {
                 empty = /^\s*$/.test(obj);
             }
 
@@ -132,7 +133,7 @@
             /// </param>
             /// <returns type="Boolean">True if the string is valid, otherwise false.</returns>
 
-            if (obj === null || typeof obj === "undefined") {
+            if (obj == null) {
                 return true;
             }
 
@@ -165,7 +166,7 @@
             /// </param>
             /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-            if (obj === null || typeof obj === "undefined") {
+            if (obj == null) {
                 return true;
             }
 
@@ -197,7 +198,7 @@
             /// </param>
             /// <returns type="Boolean">True if the number is valid, otherwise false.</returns>
 
-            if (obj === null || typeof obj === "undefined") {
+            if (obj == null) {
                 return true;
             }
 
@@ -228,7 +229,7 @@
             /// </param>
             /// <returns type="Boolean">True if the boolean is valid, otherwise false.</returns>
 
-            if (obj === null || typeof obj === "undefined") {
+            if (obj == null) {
                 return true;
             }
 
@@ -273,17 +274,7 @@
 
             // Assign the value.
             // Some analytics methods accept numbers as strings so we check the return type.
-            switch (param.type) {
-                case "integer":
-                    return data ? parseInt(data, 10) : null;
-                case "float":
-                    return data ? parseFloat(data) : null;
-                case "boolean":
-                    return data ? Boolean(data) : null;
-                default:
-                    // Default to string.
-                    return data ? data + "" : null;
-            }
+            return data;
         },
         createArgs: function () {
             /// <summary>
@@ -300,7 +291,7 @@
                 params = [];
 
             // Loop through and build the parameters.
-            $.each(event, function (val, key) {
+            $.each(event, function (key, val) {
 
                 var value;
 
@@ -318,7 +309,7 @@
             });
 
             // Trim the last null value to reduce data overheads.
-            while (params[params.length - 1] === null) {
+            while (params[params.length - 1] == null) {
                 params.pop();
             }
 
@@ -416,44 +407,35 @@
                 data = $this.data("ga"),
                 opts = typeof options === "object" ? options : null;
 
-
             if (!data) {
                 // Check the data and assign if not present.
                 $this.data("ga", (data = new GoogleAnalytics(this, opts)));
             }
 
-            // Run the appropriate function is a string is passed.
-            if (typeof options === "string") {
+            var handler = data.options.handler.toLowerCase(),
+                // Check for the event attr here as it might be other than the default.
+                event = data.$element.attr("data-ga-event");
 
-                data[options]();
+            // Overwrite if necessary.
+            $.extend(data.options, { event: event });
+
+            // Build the data as we have nothing there.
+            // First assign the event.
+            data.event = $.googleAnalyticsApi[data.options.event];
+
+            // Then bind the handler.
+            if (handler === "load") {
+
+                data.trackEvent();
 
             } else {
 
-                var handler = data.options.handler.toLowerCase(),
-                    // Check for the event attr here as it might be other than the default.
-                    event = data.$element.attr("data-ga-event");
+                data.$element.on(handler + ".ga", function (e) {
 
-                // Overwrite if necessary.
-                $.extend(data.options, { event: event });
-
-                // Build the data as we have nothing there.
-                // First assign the event.
-                data.event = $.googleAnalyticsApi[data.options.event];
-
-                // Then bind the handler.
-                if (handler === "load") {
-
+                    e.preventDefault();
                     data.trackEvent();
 
-                } else {
-
-                    data.$element.on(handler + ".ga", function (e) {
-
-                        e.preventDefault();
-                        data.trackEvent();
-
-                    });
-                }
+                });
             }
         });
     };

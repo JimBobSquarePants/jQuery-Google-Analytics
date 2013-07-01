@@ -29,22 +29,23 @@ To alter that default behaviour a data api has been provided.
 
 e.g.
 
-    // Unbind the default behaviour
-    $(document).off("ready.ga").on("ready", function () {
+``` js
+// Unbind the default behaviour
+$(document).off("ready.ga").on("ready", function () {
 
-        // Set some options the ones below are the defaults.
-        var options = {
-              event: "trackEvent", // The event name unprefixed. 
-              handler: "click", // The eventhandler to trigger the tracking. 
-                                // Using 'load' will track immediately.
-              debug: false // Whether to run in debug mode.
-        };
+    // Set some options the ones below are the defaults.
+    var options = {
+            event: "trackEvent", // The event name unprefixed. 
+            handler: "click", // The eventhandler to trigger the tracking. 
+                            // Using 'load' will track immediately.
+            debug: false // Whether to run in debug mode.
+    };
 
-        // Bind using the custom selector.        
-        $("selector").googleAnalytics(options);
+    // Bind using the custom selector.        
+    $("selector").googleAnalytics(options);
        
-    });
-
+});
+``` 
 
  - **event**
    The type of Google event to track. Used unprefixed with '_'. Currently tracked events are.
@@ -61,15 +62,22 @@ e.g.
  
 Examples
 -----
-    <a class="trackEvent" href="#" data-ga-category="category" data-ga-action="action"  data-ga-label="label" >
-        Click to test trackEvent
-    </a>
-    $("a.trackEvent").googleAnalytics({event:"trackEvent", handler:"click"});
+``` html
+<a class="trackEvent" href="#" data-ga-category="category" data-ga-action="action"  data-ga-label="label" >
+    Click to test trackEvent
+</a>
+```
+``` js
+$("a.trackEvent").googleAnalytics({event:"trackEvent", handler:"click"});
+```
 
 Will bind the `_trackEvent` analytics method to click event of the selected DOM object.
-
-	<a class="trackPageview" href="#" data-ga-url="/some other url">Click to test trackPageview</a>
-    $("a.trackPageview").googleAnalytics({event:"trackPageview", handler:"click"});    
+``` html
+<a class="trackPageview" href="#" data-ga-url="/some other url">Click to test trackPageview</a>
+``` 
+``` js
+$("a.trackPageview").googleAnalytics({event:"trackPageview", handler:"click"});    
+```
 	
 Will bind the `_trackPageview` analytics method to click event of the selected DOM object.
 
