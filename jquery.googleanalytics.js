@@ -1,5 +1,5 @@
 /*!
-* jQuery Google Analytics Plugin v2.0.3
+* jQuery Google Analytics Plugin v2.0.4
 * https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
 
 * Copyright 2012, James South
@@ -297,24 +297,32 @@
 
             var self = this,
                 event = this.event,
-                args = $.map(event, function (val, key) {
+                params = [];
 
-                    var value;
+            // Loop through and build the parameters.
+            $.each(event, function (val, key) {
 
-                    if (key === "event") {
-                        // We don't want to check for the event property in the DOM.
-                        value = val.value;
+                var value;
 
-                    } else {
+                if (key === "event") {
+                    // We don't want to check for the event property in the DOM.
+                    value = val.value;
 
-                        // Validate and return the correct value from the DOM.
-                        value = methods.validate.call(self, val, key);
-                    }
+                } else {
 
-                    return value;
-                });
+                    // Validate and return the correct value from the DOM.
+                    value = methods.validate.call(self, val, key);
+                }
 
-            return args;
+                params.push(value);
+            });
+
+            // Trim the last null value to reduce data overheads.
+            while (params[params.length - 1] === null) {
+                params.pop();
+            }
+
+            return params;
         }
     },
 
