@@ -1,0 +1,68 @@
+﻿body {
+    font-family: "Segoe UI",Tahoma,Arial,Verdana,Sans-Serif;
+}
+
+h1, h2, h3 {
+    font-family: "Segoe UI Light", "Segoe UI",Tahoma,Arial,Verdana,Sans-Serif;
+    font-weight: 400;
+}
+
+pre, code {
+    font-family: Consolas, monospace, serif;
+    background-color: #333;
+    color: #ffffb3;
+}
+
+pre {
+    border-radius: 2px;
+    padding: 1em .5em;
+}
+
+@media only screen and (max-width: 479px) {
+    pre {
+        overflow-x: scroll;
+    }
+}
+
+code {
+    -webkit-text-shadow: 1px 1px 2px #111;
+    text-shadow: 1px 1px 2px #111;
+}
+
+
+.fork {
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    right: 0;
+}
+
+    .fork img {
+        border: 0;
+    }
+
+.header {
+    background: #211054;
+    color: #fff;
+    padding: 1em 0;
+}
+
+.footer {
+    background: #343434;
+    color: #fff;
+    padding: 1em 0;
+}
+
+    .footer a {
+        color: #87ceeb;
+    }
+
+.result {
+    display: none;
+    margin-top: 1em;
+}
+
+.btn {
+    -webkit-box-shadow: 0 0 4px 2px rgba(51, 51, 51, 0.1);
+    box-shadow: 0 0 4px 2px rgba(51, 51, 51, 0.1);
+}
