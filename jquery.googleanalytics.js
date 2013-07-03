@@ -1,5 +1,5 @@
 /*!
-* jQuery Google Analytics Plugin v2.0.6
+* jQuery Google Analytics Plugin v2.0.7
 * https://github.com/JimBobSquarePants/jQuery-Google-Analytics-Plugin
 
 * Copyright 2013, James South
@@ -362,28 +362,31 @@
 
                                 if (href && href.indexOf("#") !== 0) {
 
-                                    // Handle external window requests.
-                                    if (target && target === "_blank") {
-                                        window.open(href, target);
-                                    }
-                                    else {
-                                        // IE8 doesn't pass the referrer to the next page
-                                        // using window.location. We create a hidden link to 
-                                        // counter that. Fixes issue #2
-                                        // http://stackoverflow.com/a/7917528/427899
-                                        var a = document.createElement("a");
+                                    // IE8 doesn't pass the referrer to the next page
+                                    // using window.location. We create a hidden link to 
+                                    // counter that. Fixes issue #2
+                                    // http://stackoverflow.com/a/7917528/427899
+                                    var a = document.createElement("a");
 
-                                        if (!a.click) {
+                                    if (!a.click) {
+                                        // Handle external window requests.
+                                        if (target && target === "_blank") {
+                                            window.open(href, target);
+                                        }
+                                        else {
                                             // Old FF and Secure links.
                                             window.location = href;
-                                            return;
                                         }
-
-                                        a.setAttribute("href", href);
-                                        a.style.display = "none";
-                                        document.body.appendChild(a);
-                                        a.click();
+                                        return;
                                     }
+
+                                    a.setAttribute("href", href);
+                                    if (target && target === "_blank") {
+                                        a.setAttribute("target", target);
+                                    }
+                                    a.style.display = "none";
+                                    document.body.appendChild(a);
+                                    a.click();
                                 }
 
                             }, 100);
