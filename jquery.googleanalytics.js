@@ -294,7 +294,6 @@
             $.each(event, function (key, val) {
 
                 var value;
-
                 if (key === "event") {
                     // We don't want to check for the event property in the DOM.
                     value = val.value;
@@ -358,14 +357,14 @@
                             // Redirect the location - delayed so that any other page functionality has time to run.
                             setTimeout(function () {
                                 var href = self.$element.attr("href"),
-                                    target = self.$element.attr("target");
-
-                                if (href && href.indexOf("#") !== 0) {
-
+                                    target = self.$element.attr("target"),
+                                    passed = self.$element.data("gaNopass");
+                                if ((href && href.indexOf("#") !== 0) && (!passed)) {
                                     // IE8 doesn't pass the referrer to the next page
                                     // using window.location. We create a hidden link to 
                                     // counter that. Fixes issue #2
                                     // http://stackoverflow.com/a/7917528/427899
+                                    console.log("IFd");
                                     var a = document.createElement("a");
 
                                     if (!a.click) {
@@ -387,7 +386,7 @@
                                     a.style.display = "none";
                                     document.body.appendChild(a);
                                     a.click();
-                                }
+                                } else { console.log("ELSED");}
 
                             }, 100);
                         }
@@ -403,9 +402,9 @@
     };
 
     // Plugin definition 
-    $.fn.googleAnalytics = function (options) {
+    $.fn.
+        googleAnalytics = function (options) {
         return this.each(function () {
-
             var $this = $(this),
                 data = $this.data("ga"),
                 opts = typeof options === "object" ? options : null;
