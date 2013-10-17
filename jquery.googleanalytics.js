@@ -364,7 +364,6 @@
                                     // using window.location. We create a hidden link to 
                                     // counter that. Fixes issue #2
                                     // http://stackoverflow.com/a/7917528/427899
-                                    console.log("IFd");
                                     var a = document.createElement("a");
 
                                     if (!a.click) {
@@ -386,7 +385,7 @@
                                     a.style.display = "none";
                                     document.body.appendChild(a);
                                     a.click();
-                                } else { console.log("ELSED");}
+                                }
 
                             }, 100);
                         }
