@@ -303,6 +303,9 @@
 
                     // Validate and return the correct value from the DOM.
                     value = methods.validate.call(self, val, key);
+                    if (typeof value === "object") {
+                        value = JSON.stringify(value);
+                    }
                 }
 
                 params.push(value);
